@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_area %}
+<section class="blog-list px-3 py-5 p-md-5" style="margin-top: 30px;">
+    <div class="container single-col-max-width">
+        {%  for animal in object_list  %}
+        <div class="item mb-5">
+            <div class="row g-3 g-xl-0">
+                
+                <div id="img-col" class="col-2 col-xl-3">
+                    <!-- img url check -->
+                    <img class="img-fluid post-thumb"src=" https://www.animal.go.kr/{{ animal.animals_img_url }}" style="width: 300px; height: 175px">
+                </div>
+                <div class="col" style="margin-right: 30px;">
+                    <h3 class="title mb-1"><a class="text-link" href="{{ animal.animals_animals_url }}"> {{ animal.animals_small_kind }} </a></h3>
+                    <div class="intro" style="color: black;">
+                        지역 :  {{ animal.animals_category }}
+                        <br>
+                        특징 : {{ animal.animals_sex }}
+                        <br>
+                        나이 : {{ animal.animals_year}}
+                        <br>
+                        발견지점 : {{ animal.animals_spot}}
+                        <br>
+                        특징 : {{ animal.animals_character}}
+                        <br>
+                        위치 : {{ animal.animals_location}}
+                    </div>
+                    <a class="text-link" href="{{ animal.animals_animals_url }}">Read more &rarr;</a>
+                </div><!--//col-->
+        </div><!--//item-->
+        <hr>
+        <br>
+        {% endfor %}
+    </div>
+        <!-- 페이지 -->
+        <div style="text-align: center;">
+            <div class="float-end" style="text-align: center;">
+                {% if is_paginated %}
+                <nav class="pg_wrap" style="text-align: center; position: relative; top: 50%; left: 45%; margin: -150px Opx Opx -200px;">
+                    <!-- 페이지를 번호로 출력하기 -->
+                    {% for page in page_obj.paginator.page_range %}
+                        <!-- 현재 선택한 페이지 번호는 비활성화 시킴 -->
+                        {% if page_obj.number == forloop.counter %}
+                            <a href="{{ request.path }}?page={{ forloop.counter }}" style="background-color: #FFDCA9" class="pg_current">{{ forloop.counter }}</a>
+                        {% else %}
+                            <a href="{{ request.path }}?page={{ forloop.counter }}" class="pg_current">{{ forloop.counter }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </nav>
+                {% endif %}
+            </div>
+        </div>
+<!-- 페이지 -->
+</section>
+{% endblock main_area %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ petpost.title }}
+{% endblock title %}
+
+{% block main_area %}
+<section class="container px-3 py-5 p-md-5">
+    <div class="row">
+        <div class = "col-lg-9">
+            <article class="mb-3">
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    <h1 class="fw-bolder mb-1">{{ petpost.title }}</h1>
+                    <!--title 밑에 조그맣게 카테고리나 그런 것 적을 수 있는 느낌-->
+                    {% if petpost.category %} 
+                        <span class = "badge bg-secondary mb-3 float-right">{{petpost.category}}</span>
+                    {% else %}
+                    <span class = "badge bg-secondary mb-3 float-right">미분류</span>
+                    {%endif%}
+                    <!-- Author -->
+                    <a href="#">{{petpost.author.username|upper}}</a>
+                    <hr>
+                    {%if user.is_authenticated and user == petpost.author%}
+                        <a class="btn btn-info btn-sm float-end" href="/pet/board/update_post/{{petpost.pk}}/" role="button">
+                            <i class="fac fa-pen">Edit Post</i>
+                        </a>
+                    {%endif%}
+                    <!-- Post DateTime-->
+                    <div class="text-muted fst-italic mb-2">{{ petpost.created_at }}</div>
+                </header>
+        
+                <!-- Preview image figure-->
+                <!-- head_image가 있으면 적용 -->
+                {% if petpost.thumnail %}
+                <img class="card-img-top" src="{{ petpost.thumnail.url }}" alt="..." />
+                {% else %}
+                <img class="card-img-top" src="{%static 'assets\img\gallery\1111.jpg'%}" alt="..." />
+                {% endif %}
+                
+        
+                <!-- Post content-->
+                <div class="mb-5">
+                    <p class="fs-5 mb-4">{{ petpost.content | safe }}</p>
+                </div>
+            </article>
+        
+        </div>
+    </div>
+    <!-- https://startbootstrap.com/template/blog-post -->
+    <!-- Comments section-->
+</section>
+{% endblock main_area %}

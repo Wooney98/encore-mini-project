@@ -1,0 +1,81 @@
+{% load static %}
+<script src="/static/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+<!-- ======= Header ======= -->
+<header id="header" class="header d-flex align-items-center fixed-top" style="background-color: #FAAB78; z-index: 1001;">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+
+        <a href="/" class="logo d-flex align-items-center  me-auto me-lg-0">
+            <img src="{% static 'assets\img\favicon.png' %}" style="margin-left: 50px; width: 40px; height: 40px; filter: drop-shadow(2px 2px 2px gray);"></img>
+            <h1 style="font-weight: bold; text-shadow: 2px 2px 2px gray;">멍멍냥냥</h1>
+        </a>
+
+            <nav id="navbar" class="navbar" style="margin-right: 30px; margin-left: 20px; font-weight: bold;">
+                <ul>
+                    <li>
+                        <a href="{% url 'pet:board' %}"><img src="{% static 'assets\img\dog.png' %}" style="width: 20px; height: 20px; filter: drop-shadow(2px 2px 2px gray);"></img>&nbsp;정보공유</a>
+                    </li>
+                    <li class="dropdown"><a href="{% url 'pet:recommend' %}"><img src="{% static 'assets\img\cat.png' %}" style="width: 20px; height: 20px; filter: drop-shadow(2px 2px 2px gray);"></img>&nbsp;Store</a>
+                    </li>
+                    <li><a href="{% url 'pet:mybaby' %}"><img src="{% static 'assets\img\leash-dog.png' %}" style="width: 20px; height: 20px; filter: drop-shadow(2px 2px 2px gray);"></img>&nbsp;내새끼 최고야</a></li>
+                    <li class="dropdown"><a href="#"><img src="{% static 'assets\img\turtle.png' %}" style="width: 20px; height: 20px; filter: drop-shadow(2px 2px 2px gray);"></img>&nbsp;Maps<i
+                        class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                            <li><a href="{% url 'naver_map_center' %}">보호센터</a></li>
+                            <li><a href="{% url 'naver_map' %}">병원</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'pet:news_list' %}"><img src="{% static 'assets\img\sheep-1.png' %}" style="width: 20px; height: 20px; filter: drop-shadow(2px 2px 2px gray);"></img>&nbsp;뉴스</a></li>
+                    <li><a href="{% url 'pet:hotel' %}"><img src="{% static 'assets\img\tiger.png' %}" style="width: 20px; height: 20px; filter: drop-shadow(2px 2px 2px gray);"></img>&nbsp;호텔</a></li>
+                    <li><a href="{% url 'pet:animal' %}"><img src="{% static 'assets\img\polar-bear.png' %}" style="width: 20px; height: 20px; filter: drop-shadow(2px 2px 2px gray);"></img>&nbsp;보호중인 동물</a></li>
+                </ul>
+            </nav><!-- navbar -->
+            <nav id="navbar" class="navbar" role="button" style="margin-right: 20px;">
+                <ul>
+                    {% if user.is_authenticated %}
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{user.username}}
+                        </a>
+                        <ul>
+                            <li><a href="{%url 'Account:account_view'%}">유저정보</a></li>
+                            <li><a href="/accounts/logout/">Log Out</a></li>
+                        <ul>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <!-- Button trigger modal -->
+                        <a class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Log In</a>
+                    </li>
+                    {% endif %}
+                </ul>                                                                                                      
+            </nav>
+        <!-- <a role="button" class="btn btn-warning" style="text-align: center; color: white; text-shadow: 2px 2px 2px gray; background-color: #FCF9BE;" type="button" href="login.html">Log In</a> -->
+        
+
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+    </div>
+
+    
+</header>
+
+       <!-- Modal -->
+       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">회원가입 / 로그인</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-grid gap-2">
+                    <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="{%url 'login'%}"><i class="far fa-envelope">
+                    </i>&nbsp&nbsp Log in with E-mail</a>
+                    <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="{%url 'register'%}"><i class="far fa-envelope">
+                    </i>&nbsp&nbsp Sign Up</a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+<!-- End Header -->

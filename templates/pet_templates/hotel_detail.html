@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_area %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<nav>
+    <ul>
+    </ul>
+</nav>
+
+<form method="post">
+    <section class="blog-list px-3 py-5 p-md-5">
+        <div class="container single-col-max-width">
+            <div class="item mb-5">
+                <div class="row g-3 g-xl-0">
+                        <img class="img-fluid post-thumb " src="{%static 'assets\img\gallery\1111.jpg'%}" style="width:1000px; height:500px;" alt="image">
+
+                    <div class="col" style="margin-right: 30px;">
+                        <h3 class="title mb-1"><a class="text-link" href="/호텔링크">멍멍호텔</a></h3>
+                        <div class="intro" style="color: black;">
+                            <table>
+                                    <tr>
+                                        <th>호텔위치 : 경기도</th>
+                                    </tr>
+                                    <tr>
+                                        <th>특징 : 음식이 친절하고 사장님이 맛있어요</th>
+                                    </tr>
+                                    <tr>
+                                        <th>평점 : 별이 다섯개</th>
+                                    </tr>
+                                    <tr>
+                                            <th>이용후기 : 한꾺인뜰 꼮뽀쎼요 이 호톌 찐짜 떠려워요</th>                                            
+                                    </tr>
+                            </table>
+                        </div>
+                    </div><!--//col-->
+                </div><!--//row-->
+            </div><!--//item-->         
+        </div>
+    </section>
+</form>
+<br>
+{% endblock main_area %}

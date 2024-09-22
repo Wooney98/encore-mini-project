@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_area %}
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    window.onload = function(){
+        var category = document.querySelectorAll(".cate_item");
+        //console.log(category)
+        var all_check = true
+        for(var i=0; i<category.length; i++){
+            //console.log(category[i].innerHTML);
+            //console.log("{{slug}}")
+            if(category[i].innerHTML == "{{slug}}"){
+                category[i].style.color='white'
+                category[i].style.background = '#FAAB78'
+                all_check = false
+            }
+            console.log(all_check)
+        }
+        if(all_check){
+            category[0].style.color="white"
+            category[0].style.background = '#FAAB78'
+        }
+    }
+</script>
+<section class="blog-list px-3 py-5 p-md-5">
+    <nav id="bo_cate">
+    <ul>
+        <li>
+            <a href="{%url 'pet:mybaby'%}" class = "cate_item">All</a>
+        </li>
+        {%for category in categories%}
+        <li>
+            <a href="{{category.get_absolute_url_show_off}}" class = "cate_item">{{category}}</a>
+        </li>
+        {%endfor%}
+        {%if user.is_authenticated or user.is_superuser or user.is_staff %}
+        <li class="float-end"><a href="{%url 'pet:mybaby_create_post'%}" class="btn float-right" title="글쓰기">
+            <i class="bi bi-pencil-square"></i>글쓰기</a>
+        </li>
+        {%endif%}
+    </ul>
+</nav>
+<form method="post">
+        {% if showoffpost_list.exists %}
+            {% for p in showoffpost_list %}
+                <div class="container single-col-max-width" id = "petpost-{{p.pk}}">
+                    <div class="item mb-5">
+                        <div class="row g-3 g-xl-0">
+                            {% if p.thumnail %}
+                            <div id="img-col" class="col-2 col-xl-3">
+                                <img class="card-img-top" src="{{ p.thumnail.url }}" alt="{{ p }} head image" style="width: 200px; height:120px"/>
+                            </div>
+                            {% else %}
+                            <div id="img-col" class="col-2 col-xl-3">
+                                <img class="img-fluid post-thumb " src="{%static 'assets\img\gallery\1111.jpg'%}" alt="image" style="width: 200px; height:120px">
+                            </div>
+                            {%endif%}
+                            <div class="col">
+                                <h3 class="title mb-1"><a class="text-link" href="{{p.get_absolute_url}}">{{p.title}}</a></h3>
+                                <div class="meta mb-1"><span class="date">{{p.created_at}}</div>
+                                <span class="card-body text-dark">{{p.content | striptags |  truncatewords:30}}</span>
+                                <div><a class="intro" role="button">{{p.category}}</a></div>
+                                <a class="text-link" href="{{p.get_absolute_url}}">Read more &rarr;</a>
+                            </div><!--//col-->
+                        </div><!--//row-->
+                    </div><!--//item-->         
+                </div>
+            {%endfor%}
+        {% else %}
+        <h3>아직 게시물이 없습니다.</p>
+        {% endif %}
+        {% if is_paginated %}
+
+        <!-- 페이지 -->
+        <div>
+            <nav class="pg_wrap" style="text-align: center; position: relative; top: 50%; left: 45%; margin: -150px Opx Opx -200px;" aria-label="Pagination">
+                <hr class="my-0" />
+                <ul class="pagination justify-content-center my-4">
+                    <!-- 이전 페이지로 돌아가기 has_previous로 이전이 있는지 확인-->
+                    {% if page_obj.has_previous %}
+                    <!-- 이전 페이지 객체가 있으면 [prev]버튼 활성화 -->
+                    <li class="page-item">
+                        <a class="page-link"
+                            href="{% url 'pet:board' %}?page={{ page_obj.previous_page_number }}"
+                            tabindex="-1">Prev</a>
+                    </li>
+                    {% else %}
+                    <!-- 이전페이지 객체가 없으면 [prev]버튼 비활성화. #는 무의미한 url을 의미한다. -->
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Prev</a>
+                    </li>
+                    {% endif %}
+                    <!-- 페이지를 번호로 출력하기. 전체 페이지 번호를 출력(적용)하며 현재 선택된 페이지는 비활성화, 다른 페이지들은 활성화시킴. -->
+                    {% for page in page_obj.paginator.page_range %}
+                    <!-- 현재 선택한 페이지 번호는 비활성화 시킴 -->
+                    {% if page_obj.number == forloop.counter %}
+                    <!-- 만약 현재 선택된  -->
+                    <li class="page-item disabled" aria-current="page">
+                        <a class="page-link" style="background-color: #7eacf6;"
+                            href="{{ request.path }}?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+                    </li>
+                    {% else %}
+                    <!-- 현재 선택한 페이지 번호는 활성화 시킴 -->
+                    <li class="page-item" aria-current="page">
+                        <!-- request.path는 현재 페이지의 url을 가져오는 의미이다.-->
+                        <a class="page-link" href="{{ request.path }}?page={{ forloop.counter }}">{{ forloop.counter}}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                    <!-- 다음 페이지로 가기 -->
+                    {% if page_obj.has_next %}
+                    <!-- 이전페이지 객체가 있으면 [Next]버튼 활성화 -->
+                    <li class="page-item">
+                        <a class="page-link"
+                            href="{% url 'pet:board' %}?page={{ page_obj.next_page_number }}">Next</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        {%endif%}
+
+    <!-- 페이지 -->
+</form>
+<br>
+</section>
+{% endblock main_area %}

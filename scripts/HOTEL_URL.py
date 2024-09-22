@@ -1,0 +1,6 @@
+# HOTEL_URL 
+
+HOTEL_SEOUL = "https://www.booking.com/pets/city/kr/seoul.ko.html?aid=318615;label=New_Korean_KO_KR_27026369665-R_vl5Z_pc7kqLnDtBgvVpgS217273953110:pl:ta:p1:p2:ac:ap:neg:fi55518828567:tiaud-294889296933:dsa-55482331735:lp1009871:li:dec:dm;ws=&gclid=CjwKCAiAy_CcBhBeEiwAcoMRHEMF8Jrf4CQIJwJXKdjZ-fioDk_LTvq884XmOjDHI0IJVkza6sDSgxoCYpQQAvD_BwE"
+HOTEL_GYEONGGI = "https://www.booking.com/pets/region/kr/gyeonggi-do.ko.html?aid=318615&label=New_Korean_KO_KR_27026369665-R_vl5Z_pc7kqLnDtBgvVpgS217273953110%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi55518828567%3Atiaud-294889296933%3Adsa-55482331735%3Alp1009871%3Ali%3Adec%3Adm&sid=27283e6d40afd700a11718d32eea4a1d"
+HOTEL_INCHEON = "https://www.booking.com/pets/city/kr/inchon.ko.html?aid=318615&label=New_Korean_KO_KR_27026369665-R_vl5Z_pc7kqLnDtBgvVpgS217273953110%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi55518828567%3Atiaud-294889296933%3Adsa-55482331735%3Alp1009871%3Ali%3Adec%3Adm&sid=27283e6d40afd700a11718d32eea4a1d"
+HOTEL_KOREA = 'https://www.booking.com/pets/country/kr.ko.html?aid=318615&label=New_Korean_KO_KR_27026369665-R_vl5Z_pc7kqLnDtBgvVpgS217273953110%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi55518828567%3Atiaud-294889296933%3Adsa-55482331735%3Alp1009871%3Ali%3Adec%3Adm&sid=27283e6d40afd700a11718d32eea4a1d'

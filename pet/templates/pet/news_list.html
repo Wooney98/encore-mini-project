@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_area %}
+<section class="blog-list px-3 py-5 p-md-5" style="margin-top: 30px;">
+    <div class="container single-col-max-width">
+        {% for news in object_list %}
+        <div class="item mb-5">
+            <div class="row g-3 g-xl-0" style="position: center;">
+
+                <div id="img-col" class="col-2 col-xl-3">
+                    {% if news.news_top_image %}
+                    <img class="img-fluid post-thumb " src="{{ news.news_top_image }}"
+                        style="width: 200px; height: 160px; object-fit: cover;" alt="없음">
+                    {% else %}
+                    <div id="img-col" class="col-2 col-xl-3">
+                        <img class="img-fluid post-thumb " src="{%static 'assets\img\gallery\1111.jpg'%}">
+                    </div>
+                    {%endif%}
+                </div>
+                
+                <div class="col">
+                    <h3 class="title mb-1"><a class="text-link"
+                            href="{{ news.get_absolute_url }}">{{  news.news_title }}</a></h3>
+                    <div class="meta mb-1"><span class="date">{{ news.news_udate }}</span></div>
+                    <div class="intro">{{ news.news_content | truncatechars:150 | safe }}</div>
+                    <a class="text-link" href="{{ news.get_absolute_url }}">Read more &rarr;</a>
+                </div><!--//col-->
+        </div><!--//item-->
+        <hr>
+        <br>
+        {% endfor %}
+    </div>
+    <!-- 페이지 -->
+    <div style="text-align: center;">
+        <div class="float-end" style="text-align: center;">
+            {% if is_paginated %}
+            <nav class="pg_wrap"
+                style="text-align: center; position: relative; top: 50%; left: 45%; margin: -150px Opx Opx -200px;">
+                <!-- 페이지를 번호로 출력하기 -->
+                {% for page in page_obj.paginator.page_range %}
+                <!-- 현재 선택한 페이지 번호는 비활성화 시킴 -->
+                {% if page_obj.number == forloop.counter %}
+                <a href="{{ request.path }}?page={{ forloop.counter }}" style="background-color: #FFDCA9"
+                    class="pg_current">{{ forloop.counter }}</a>
+                {% else %}
+                <a href="{{ request.path }}?page={{ forloop.counter }}" class="pg_current">{{ forloop.counter }}</a>
+                {% endif %}
+                {% endfor %}
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+    <!-- 페이지 -->
+</section>
+<script>
+    {% for news in object_list %}
+      if ("{{news.news_udate}}" == "None"){
+        var news_create = document.querySelectorAll("span.date")[{{forloop.counter0}}]
+        console.log(news_create)
+        news_create.innerHTML = "날짜 정보 없음"
+      }
+    {%endfor%}
+</script>
+{% endblock main_area %}

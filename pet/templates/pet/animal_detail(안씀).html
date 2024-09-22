@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_area %}
+<nav>
+    <ul>
+    </ul>
+</nav>
+
+<form method="post">
+    <section class="blog-list px-3 py-5 p-md-5">
+        <div class="container single-col-max-width">
+            <div class="item mb-5">
+                <div class="row g-3 g-xl-0">
+                                                <!-- IMG 저장할 때 베이스 링크는 제외하고 크롤링해옴. 그래서 베이스링크랑 같이 넣어줌 -->
+                        <img class="img-fluid post-thumb " src=" https://www.animal.go.kr/{{ animals.animals_img_url }}" style="width:1000px; height:500px;" alt="image">
+                    <div class="col" style="margin-right: 30px;">
+                        <h3 class="title mb-1"><a class="text-link" href="{{animals.animals_animals_url}}"> {{animals.animals_small_kind}} </a></h3>
+                        <div class="intro" style="color: black;">
+                            <table>
+                                    <tr>
+                                        <th> {{animals.animals_small_kind}} </th>
+                                    </tr>
+                                    <tr>
+                                        <th>{{animals.animals_color}}</th>                                            
+                                    </tr>
+                                    <tr>
+                                        <th>{{animals.animals_year}}</th>                                            
+                                    </tr>
+                                    <tr>
+                                        <th>{{animals.animals_spot}}</th>                                            
+                                    </tr>
+                                    <tr>
+                                        <th> {{animals.animals_reception_data}} </th>                                            
+                                    </tr>
+                                    <tr>
+                                        <th>{{animals.animals_character}}  </th>                                            
+                                    </tr>
+                                    <tr>
+                                        <th>{{animals.animals_center}} </th>                                            
+                                    </tr>
+                                    <tr>
+                                        <th>{{animals.animals_call}} </th>
+                                    </tr>
+                                    <tr>
+                                        <th>{{animals.animals_location}} </th>
+                                    </tr>
+                                    <tr>
+                                        <th>{{animals.animals_category}} </th>
+                                    </tr>
+                                </table>
+                        </div>
+                    </div><!--//col-->
+                </div><!--//row-->
+            </div><!--//item-->         
+        </div>
+    </section>
+</form>
+{% endblock main_area %}

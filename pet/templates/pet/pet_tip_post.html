@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+Pet 정보 공유 게시판 작성
+{% endblock title %}
+{%block main_area%}
+<section class="container">
+    <h1>Create New Post</h1>
+    <hr>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        <table>
+            <!-- 얘는 crispy form 전체 적용 -->
+            {{ form | crispy }}
+        </table>
+        <div style="text-align: center;"><button type="submit" class="btn" style="font-weight: bold; width: 200px; text-align: center; color: white; text-shadow: 2px 2px 2px gray; background-color: #FAAB78;">Submit</button></div>
+    </form>
+</section>
+{%endblock main_area%}

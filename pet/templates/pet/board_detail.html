@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ petpost.title }}
+{% endblock title %}
+
+{% block main_area %}
+<style>
+    .badge{
+        position: absolute;
+        z-index: 1000;
+        top: 250px;
+        text-align: center;
+        left: 705px;    
+    }
+    .h3_title{
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto; 
+        left: 0;
+        right: 0;
+        text-align: center;
+        z-index: 1000;
+        top: 320px;
+    }   
+</style>
+<div class="blog-posts grid-system">
+    <div class="row">
+        <div class="all-blog-posts">
+            <div class="row">
+                    <div class="blog-post" style="width: 70%; margin: 0 auto;">
+                        <h1 class="h3_title" style="color: black; ">{{ petpost.title }}</h1>
+                        <div class="blog-thumb" style="opacity: 0.7;  position: relative; text-align: center;">
+                            {% if petpost.thumnail %}
+                                <img class="card-img-top" src="{{ petpost.thumnail.url }}" alt="..." style="width: 1000px; height: 500px;" />
+                            {% else %}
+                                <img class="card-img-top" src="{%static 'assets\img\gallery\1111.jpg'%}" alt="..." />
+                            {% endif %}
+                        </div>
+                        <div class="down-content">
+                            {% if petpost.category %} 
+                                <span class = "badge bg-secondary mb-3 float-right" style="text-align: center;">{{petpost.category}}</span>
+                            {% else %}
+                                <span class = "badge bg-secondary mb-3 float-right" style="text-align: center;">미분류</span>
+                            {%endif%}
+                        
+                                <h4 class="created_at" style="text-align: center;">작성자 : {{ petpost.author.username | upper }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   작성시간 : {{petpost.created_at }}</h4>
+                                {%if user.is_authenticated and user == petpost.author%}
+                                    <a class="btn btn-sm float-end" style="background-color: #FAAB78; color: black;" href="/pet/board/update_post/{{petpost.pk}}/">
+                                        <i id="d" class = "d">Edit Post</i>
+                                    </a>
+                                {%endif%}
+                            <div class="mb-3" style="word-break: break-all;">
+                                <p class="fs-5 mb-4">{{ petpost.content | safe  }}</p>
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main_area %}

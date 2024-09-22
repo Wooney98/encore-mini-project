@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_area %}
+
+<body class="box">
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero d-flex flex-column justify-content-center align-items-center" data-aos="fade"
+    data-aos-delay="1500" style="opacity: 0.9; color: #FFDCA9; background-color: white;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 text-center">
+          <!-- <h2>여기는<span style="background-color: #F9B5D0;">동물농장</span>입니다</h2> -->
+          <br>
+          <h2 style="color: dimgray; text-shadow: 2px 2px 2px #FCF9BE;">이곳은 <span><img
+                src="{% static 'assets\img\paw.png' %}" style="width: 25px; height: 25px;"></img>멍멍냥냥<img
+                src="{% static 'assets\img\paw.png' %}" style="width: 25px; height: 25px;"></img></span> 입니다</h2>
+          <p style="color: dimgrey; text-shadow: 2px 2px 2px #FCF9BE;">멍멍 냥냥 으르르르 야옹 깨갱</p>
+          <a href="contact.html" class="btn-get-started"
+            style="background-color: #FAAB78; text-shadow: 2px 2px 2px gray;">둘러보기&nbsp;<img
+              src="{% static 'assets\img\paw.png' %}" style="width: 15px; height: 15px;"></img></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Hero Section -->
+
+  <!-- 카드형식 그리드 템플릿 -->
+  <main id="content" class="content" role="main">
+    <div class="wraps">
+      <img src="" class="wrapshadow">
+      <!-- 그리드 카드 -->
+      <div class="grid">
+        <div class="grid-item">
+          <article class="post">
+            <a href="article.html"><img src="{% static 'assets/img/paw.png' %}" style="width: 365px; height:225px;"></a>
+            <div class="wrapgriditem">
+              <header class="post-header">
+                <h2 class="post-title"><a href="article.html">메인 화면 테스트</a></h2>
+              </header>
+              <section class="post-excerpt">
+                <p>
+                  메인 화면 카드 섹션 내용 테스트 <a class="read-more" href="/retro-is-the-new-modern/">&raquo;</a>
+                </p>
+              </section>
+              <footer class="post-meta">
+                <img class="author-thumb" src="{% static 'assets/img/cat.png' %}" alt="David" nopin="nopin" />
+                <a href="author.html">이현복</a>
+                <time class="post-date" datetime="2022-12-21">21 December 2022</time>
+              </footer>
+            </div>
+          </article>
+        </div>
+        <!-- 그리드 카드 -->
+
+        <!-- 그리드 카드 -->
+        <div class="grid-item">
+          <article class="post tag-romance">
+            <a href="article.html"><img src="{% static 'assets/img/gallery/1111.jpg' %}"
+                style="width: 365px; height:225px;"></a>
+            <div class="wrapgriditem">
+              <header class="post-header">
+                <h2 class="post-title"><a href="article.html">메인 화면 테스트</a></h2>
+              </header>
+              <section class="post-excerpt">
+                <p>
+                  메인 화면 카드 섹션 내용 테스트 <a class="read-more" href="/retro-is-the-new-modern/">&raquo;</a>
+                </p>
+              </section>
+              <footer class="post-meta">
+                <img class="author-thumb" src="{% static 'assets/img/dog.png' %}" alt="David" nopin="nopin" />
+                <a href="author.html">이현복</a>
+                <time class="post-date" datetime="2022-12-21">21 December 2022</time>
+              </footer>
+            </div>
+          </article>
+        </div>
+        <!-- 그리드 카드 -->
+
+        <!-- 그리드 카드 -->
+        <div class="grid-item">
+          <article class="post">
+            <a href="article.html"><img src="{% static 'assets/img/gallery/1111.jpg' %}"
+                style="width: 365px; height:225px;"></a>
+            <div class="wrapgriditem">
+              <header class="post-header">
+                <h2 class="post-title"><a href="article.html">메인 화면 테스트</a></h2>
+              </header>
+              <section class="post-excerpt">
+                <p>
+                  메인 화면 카드 섹션 내용 테스트 <a class="read-more" href="/retro-is-the-new-modern/">&raquo;</a>
+                </p>
+              </section>
+              <footer class="post-meta">
+                <img class="author-thumb" src="{% static 'assets/img/chick.png' %}" alt="David" nopin="nopin" />
+                <a href="author.html">이현복</a>
+                <time class="post-date" datetime="2022-12-21">21 December 2022</time>
+              </footer>
+            </div>
+          </article>
+        </div>
+        <!-- 그리드 카드 -->
+      </div>
+    </div>
+  </main>
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+  {% endblock main_area%}

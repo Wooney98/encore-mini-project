@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main_area %}
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero d-flex flex-column justify-content-center align-items-center" data-aos="fade"
+    data-aos-delay="1500" style="opacity: 0.9; color: #FFDCA9; background-color: white; margin-top: 50px;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 text-center">
+          <!-- <h2>여기는<span style="background-color: #F9B5D0;">동물농장</span>입니다</h2> -->
+          <br>
+          <h2 style="color: dimgray; text-shadow: 2px 2px 2px #FCF9BE;">이곳은 <span><img
+                src="{% static 'assets\img\paw.png' %}" style="width: 25px; height: 25px;"></img>멍멍냥냥<img
+                src="{% static 'assets\img\paw.png' %}" style="width: 25px; height: 25px;"></img></span> 입니다</h2>
+          <p style="color: dimgrey; text-shadow: 2px 2px 2px #FCF9BE;">멍멍 냥냥 으르르르 야옹 깨갱</p>
+          <a href="{% url 'pet:board' %}" class="btn-get-started"
+            style="background-color: #FAAB78; text-shadow: 2px 2px 2px  gray; width: 190px; font-size: 15pt; margin-right: 30px;">둘러보기&nbsp;<img
+              src="{% static 'assets\img\paw.png' %}" style="width: 15px; height: 15px;"></img></a>
+          <a href="https://dang-bti.netlify.app/" class="btn-get-started"
+          style="background-color: #FAAB78; text-shadow: 2px 2px 2px gray; width: 190px; font-size: 15pt;">댕BTI&nbsp;<img
+            src="{% static 'assets\img\paw.png' %}" style="width: 15px; height: 15px;"></img></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Hero Section -->
+
+  <!-- 카드형식 그리드 템플릿 -->
+  <main id="content" class="content" role="main">
+    <h2 style="text-align: center; text-shadow: 2px 2px 2px #FCF9BE;"><img
+      src="{% static 'assets\img\paw.png' %}" style="width: 25px; height: 25px;"></img>&nbsp;최근 등록 게시물&nbsp;<img
+      src="{% static 'assets\img\paw.png' %}" style="width: 25px; height: 25px;"></img></h2>
+    <div class="wraps">
+      <img src="" class="wrapshadow">
+      <!-- 그리드 카드 -->
+      <div class="grid">
+          {% for post, author in post_list%}
+          <div class="grid-item">
+            <article class="post">
+              <!-- <a href="article.html"><img src="{% static 'assets/img/paw.png' %}" style="width: 365px; height:225px;"></a> -->
+              {%if post.8 == 1%}
+                {% if post.5 %}
+                  <div>
+                    <a href="{%url 'pet:post_deatil' post.0%}">
+                      <img class="card-img-top" src="/media/{{post.5}}" alt="{{ post.5 }} head image" style="width: 392px; height:225px;" />
+                    </a>
+                  </div>
+                {% else %}
+                  <div>
+                    <a href="{%url 'pet:post_deatil' post.0%}">
+                      <img class="img-fluid post-thumb " src="{%static 'assets\img\gallery\1111.jpg'%}" alt="image" style="width: 392px; height:225px;">
+                    </a>
+                  </div>
+                {%endif%}
+              {%elif post.8 == 2%}
+                {% if post.5 %}
+                  <div>
+                    <a href="{%url 'pet:recommend_detail' post.0%}">
+                      <img class="card-img-top" src="/media/{{post.5}}" alt="{{ post.5 }} head image" style="width: 392px; height:225px;" />
+                    </a>
+                  </div>
+                {% else %}
+                  <div>
+                    <a href="{%url 'pet:recommend_detail' post.0%}">
+                      <img class="img-fluid post-thumb " src="{%static 'assets\img\gallery\1111.jpg'%}" alt="image" style="width: 392px; height:225px;">
+                    </a>
+                  </div>
+                {%endif%}
+              {%else%}
+                {% if post.5 %}
+                  <div>
+                    <a href="{%url 'pet:mybaby_detail' post.0%}">
+                      <img class="card-img-top" src="/media/{{post.5}}" alt="{{ post.5 }} head image" style="width: 392px; height:225px;" />
+                    </a>
+                  </div>
+                {% else %}
+                  <div>
+                    <a href="{%url 'pet:mybaby_detail' post.0%}">
+                      <img class="img-fluid post-thumb " src="{%static 'assets\img\gallery\1111.jpg'%}" alt="image" style="width: 392px; height:225px;">
+                    </a>
+                  </div>
+                {%endif%}
+              {%endif%}
+              <div class="wrapgriditem">
+                <header>
+                  {%if post.8 == 1%}
+                  <h3><a href="{%url 'pet:post_deatil' post.0%}">{{post.1 | truncatechars:25}} </a></h3>
+                  {%elif post.8 == 2%}
+                  <h3><a href="{%url 'pet:recommend_detail' post.0%}">{{post.1 | truncatechars:25}}</a></h3>
+                  {%else%}
+                  <h3><a href="{%url 'pet:mybaby_detail' post.0%}">{{post.1 | truncatechars:25}}</a></h3>
+                  {%endif%}
+                </header>
+                <section class="post-excerpt">
+                  <p>
+                    {{post.2| striptags|  truncatechars:50}} <a class="read-more" href="#"></a>
+                  </p>
+                </section>
+                <footer class="post-meta2">
+                  <p href="author.html">{{author}}</p>
+                  {%if post.8 == 1%}
+                  <img class="author-thumb" src="{% static 'assets/img/dog.png' %}" alt="David" nopin="nopin" />
+                  {%elif post.8 == 2%}
+                  <img class="author-thumb" src="{% static 'assets/img/cat.png' %}" alt="David" nopin="nopin" />
+                  {%else%}
+                  <img class="author-thumb" src="{% static 'assets/img/leash-dog.png' %}" alt="David" nopin="nopin" />
+                  {%endif%}
+                  <p class="post-date">{{post.3}}</p>
+                </footer>
+              </div>
+            </article>
+          </div>
+          {%endfor%}
+      </div>
+    </div>
+  </main>
+  <hr>
+
+  <main id="content" class="content" role="main">
+    <h2 style="text-align: center; text-shadow: 2px 2px 2px #FCF9BE;"><img
+      src="{% static 'assets\img\paw.png' %}" style="width: 25px; height: 25px;"></img>&nbsp;뉴스&nbsp;<img
+      src="{% static 'assets\img\paw.png' %}" style="width: 25px; height: 25px;"></img></h2>
+    <div class="wraps">
+      <img src="" class="wrapshadow">
+      <!-- 그리드 카드 -->
+      <div class="grid">
+        {% for news in news_list%}
+          <div class="grid-item">
+            <article class="post">
+              <!-- <a href="article.html"><img src="{% static 'assets/img/paw.png' %}" style="width: 365px; height:225px;"></a> -->
+              {%if news.news_top_image%}
+                  <div>
+                    <a href="{{news.get_absolute_url}}">
+                      <img class="card-img-top" src="{{ news.news_top_image }}" alt=" head image" style="width: 392px; height:225px;" />
+                    </a>
+                  </div>
+                  {%else%}
+                  <div>
+                    <a href="{{news.get_absolute_url}}">
+                      <img class="img-fluid post-thumb " src="{%static 'assets\img\gallery\1111.jpg'%}" alt="image" style="width: 392px; height:225px;">
+                    </a>
+                  </div>
+                  {%endif%}
+              <div class="wrapgriditem">
+                <header>
+                  <h4><a href="{{news.get_absolute_url}}">{{news.news_title|linebreaks|truncatechars:30}}</a></h4>
+                </header>
+                <section class="post-excerpt">
+                  <p>
+                    <img class="author-thumb" src="{% static 'assets/img/sheep-1.png' %}" alt="David" nopin="nopin" />
+                  </p>
+                  <p class="post-date" id = "post_create">{{news.news_udate}}</p>
+                </section>
+              </div>
+            </article>
+          </div>
+          {%endfor%}
+        </div>
+      </div>
+    </main>
+
+
+    <main id="content" class="content" role="main">
+    <h2 style="text-align: center; text-shadow: 2px 2px 2px #FCF9BE;;"><img
+      src="{% static 'assets\img\paw.png' %}" style="width: 25px; height: 25px;"></img>&nbsp;호텔 리스트&nbsp;<img
+      src="{% static 'assets\img\paw.png' %}" style="width: 25px; height: 25px;"></img></h2>
+    <div class="wraps">
+      <img src="" class="wrapshadow">
+      <!-- 그리드 카드 -->
+      <div class="grid">
+        {% for hotel in hotel_list%}
+          <div class="grid-item">
+            <article class="post">
+              <!-- <a href="article.html"><img src="{% static 'assets/img/paw.png' %}" style="width: 365px; height:225px;"></a> -->
+              {%if hotel.kh_img_url%}
+                  <div>
+                    <a href="https://www.booking.com/{{koreahotel.kh_hotel_link }}">
+                      <img class="card-img-top" src="{{ hotel.kh_img_url }}" alt=" head image" style="width: 392px; height:225px;" />
+                    </a>
+                  </div>
+                  {%else%}
+                  <div>
+                    <a href="https://www.booking.com/{{koreahotel.kh_hotel_link }}">
+                      <img class="img-fluid post-thumb " src="{%static 'assets\img\gallery\1111.jpg'%}" alt="image" style="width: 392px; height:225px;">
+                    </a>
+                  </div>
+                  {%endif%}
+              <div class="wrapgriditem">
+                <header>
+                  <h4><a href="https://www.booking.com/{{koreahotel.kh_hotel_link }}">{{hotel.kh_hotel_name|linebreaks|truncatewords:10}}</a></h4>
+                </header>
+                <section class="post-excerpt">
+                    <p style="width: 300px; font-size: 20px;" ><i class="bi bi-star-fill" style="font-size: 20pt;"></i>&nbsp;&nbsp;{{hotel.kh_hotel_score|truncatewords:4}}</p>
+                    <p style="width: 300px; margin-top: 20px; font-size: 20px;"><i class="bi bi-geo-alt-fill" style="font-size: 20pt;"></i>&nbsp;{{hotel.kh_hotel_location|truncatewords:4}}</p>
+                </section>
+              </div>
+            </article>
+          </div>
+          {%endfor%}
+        </div>
+      </div>
+    </main>
+    
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+  <script>
+
+    {% for news in news_list %}
+      if ("{{news.news_udate}}" == "None"){
+        var news_create = document.querySelectorAll("p#post_create")[{{forloop.counter0}}]
+        news_create.innerHTML = "날짜 정보 없음"
+      }
+    {%endfor%}
+
+    window.onload = function (){
+      var news_create = document.getElementById("post_create")
+      console.log(news_create)
+    }
+  </script>
+  {% endblock main_area%}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_area %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<nav>
+    <ul>
+    </ul>
+</nav>
+
+<form method="post">
+    <section class="blog-list px-3 py-5 p-md-5">
+        <div class="container single-col-max-width">
+            <div class="item mb-5">
+                <div class="row g-3 g-xl-0">
+                        <img class="img-fluid post-thumb " src="{%static 'assets\img\gallery\1111.jpg'%}" style="width:1000px; height:500px;" alt="image">
+
+                    <div class="col" style="margin-right: 30px;">
+                        <h3 class="title mb-1"><a class="text-link" href="/보호소링크">강아지</a></h3>
+                        <div class="intro" style="color: black;">
+                            <table>
+                                    <tr>
+                                        <th>색상 : 애쉬그레이</th>
+                                    </tr>
+                                    <tr>
+                                        <th>성별 : 남</th>
+                                    </tr>
+                                    <tr>
+                                        <th>출생년도 : 2020</th>                                            
+                                    </tr>
+                                    <tr>
+                                        <th>발견장소 : 독산역</th>                                            
+                                    </tr>
+                                    <tr>
+                                        <th>접수일자 : 2022-12-20</th>                                            
+                                    </tr>
+                                    <tr>
+                                        <th>특징 : 귀여움</th>                                            
+                                    </tr>
+                                    <tr>
+                                        <th>보호센터 : 독산보호센터</th>                                            
+                                    </tr>
+                                    <tr>
+                                        <th>보호소 전화번호 : 031-123-4567</th>                                            
+                                    </tr>
+                                    <tr>
+                                        <th>보호소위치 : 경기도</th>
+                                    </tr>
+                                </table>
+                        </div>
+                    </div><!--//col-->
+                </div><!--//row-->
+            </div><!--//item-->         
+        </div>
+    </section>
+</form>
+{% endblock main_area %}

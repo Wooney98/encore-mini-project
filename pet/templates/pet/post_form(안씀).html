@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block main_area %}
+<section class="container" style="color: #FAAB78;">
+    <h1>Create New Post</h1>
+    <hr>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        <table>
+            <!--  form | crispy  crispy 지우니까 되네; -->
+            {{ form | crispy }} 
+        </table>
+        <div id="div_id_tags_str">
+            <label for="id_tags_str">Tags </label>
+            <input type="text" name="tags_str" id="id_tags_str" class="textInput form-control" >
+        </div>
+        <button type="submit" class="btn float-end" style="text-align: center; color: white; text-shadow: 2px 2px 2px gray; background-color: #FAAB78;">Submit</button>
+    </form>
+</section>
+{% endblock main_area %}

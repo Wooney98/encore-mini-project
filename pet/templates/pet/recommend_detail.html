@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ petpost.title }}
+{% endblock title %}
+
+{% block main_area %}
+<style>
+    .badge{
+        text-align: center;
+        position: absolute;
+        z-index: 1000;
+        top: 250px;
+        left: 705px;    
+    }
+    .h3_title{
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto; 
+        left: 0;
+        right: 0;
+        text-align: center;
+        z-index: 1000;
+        top: 320px;
+    }   
+</style>
+<div class="blog-posts grid-system">
+    <div class="row">
+        <div class="all-blog-posts">
+            <div class="row">
+                    <div class="blog-post" style="width: 70%; margin: 0 auto;">
+                        <h1 style="color: black;" class="h3_title">{{ recommendpost.title }}</h1>
+                        <div class="blog-thumb" style="text-align: center; opacity: 0.7; position: relative;" >
+                            {% if recommendpost.thumnail %}
+                            <img class="card-img-top" src="{{ recommendpost.thumnail.url }}" alt="..." style="object-fit: cover; width: 1000px; height: 500px;" />
+                            {% else %}
+                            <img class="card-img-top" src="{%static 'assets\img\gallery\1111.jpg'%}" style="object-fit: cover; width: 1000px; height: 500px;" alt="..." />
+                            {% endif %}
+                        </div>
+                        <div class="down-content">
+                            {% if recommendpost.category %} 
+                                <span class = "badge bg-secondary mb-3 float-right">{{recommendpost.category}}</span>
+                            {% else %}
+                                <span class = "badge bg-secondary mb-3 float-right" style="text-align: center;">미분류</span>
+                            {%endif%}
+                                <h4 class="created_at" style="text-align: center;">작성자 : {{ recommendpost.author.username | upper }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   작성시간 : {{recommendpost.created_at }}</h4>
+                                {%if user.is_authenticated and user == recommendpost.author%}
+                                    <a class="btn btn-sm float-end" style="background-color: #FAAB78; color: black;" href="/pet/recommend/update_post/{{recommendpost.pk}}/">
+                                        <i id="d" class = "d">Edit Post</i>
+                                    </a>
+                                {%endif%}
+                            <div class="mb-5" style="word-break: break-all;">
+                                <p class="fs-5 mb-4">{{ recommendpost.content | safe  }}</p>
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main_area %}
