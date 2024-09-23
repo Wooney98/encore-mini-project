@@ -23,7 +23,9 @@
 <details>
 <summary>시스템 흐름도</summary>
 <div markdown="">
-![image](https://github.com/user-attachments/assets/aa7c9300-7533-4b82-baa7-08944ae59e9c)
+
+![image](https://github.com/user-attachments/assets/79cbabd9-a1ab-442f-9a0e-be9bd20c8517)
+
 
 </div>
 </details>
